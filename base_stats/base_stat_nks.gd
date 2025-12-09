@@ -1,5 +1,5 @@
 extends Resource
-class_name BaseStat
+class_name BaseStatNks
 
 signal stat_level_up(amount: int)
 
