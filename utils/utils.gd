@@ -1,5 +1,4 @@
-extends RefCounted
-class_name UtilsNks
+class_name Utils
 
 static func get_function_name() -> String:
     var stack = get_stack()
