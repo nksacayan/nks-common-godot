@@ -1,0 +1,1 @@
+Pretty sure this health can be abstracted to any value based stat like mana/stamina/etc.
