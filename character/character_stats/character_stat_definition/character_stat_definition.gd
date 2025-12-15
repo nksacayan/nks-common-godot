@@ -11,7 +11,7 @@ class_name CharacterStatDefinition
 var stat_name: String:
     get: return _stat_name
 
-@export var _min_value: int = 0
+@export var _min_value: int = 1
 var min_value: int:
     get: return _min_value
 
