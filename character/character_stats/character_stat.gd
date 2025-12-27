@@ -1,5 +1,5 @@
 extends Resource
-class_name CharacterStat
+class_name CharacterStatOld
 
 signal value_changed(new_value: int)
 

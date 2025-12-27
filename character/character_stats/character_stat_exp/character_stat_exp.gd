@@ -1,7 +1,7 @@
 extends Resource
-class_name CharacterStatExp
+class_name CharacterStatExpOld
 
-@export var managed_stat: CharacterStat
+@export var managed_stat: CharacterStatOld
 
 # "Level" will be the managed stat's value
 var _max_exp: int = 100
@@ -18,5 +18,5 @@ var _max_exp: int = 100
 func _level_stat() -> void:
 	managed_stat.value += 1
 
-func _init(p_managed_stat: CharacterStat = CharacterStat.new()) -> void:
+func _init(p_managed_stat: CharacterStatOld = CharacterStatOld.new()) -> void:
 	managed_stat = p_managed_stat
