@@ -1,1 +1,0 @@
-Store stat definition resources in a per-project basis instead of common
