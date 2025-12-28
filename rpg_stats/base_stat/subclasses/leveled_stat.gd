@@ -17,17 +17,16 @@ var _experience: int = MIN_EXPERIENCE
 			p_experience -= required_experience
 			stat_value.value += 1
 			leveled_up.emit()
-			required_experience = MIN_REQUIRED_EXPERIENCE * stat_value.value
 		_experience = p_experience
+	get:
+		return _experience
 
 const DEFAULT_STAT_MIN := 1
-@export var stat_min: int = DEFAULT_STAT_MIN
 const DEFAULT_STAT_MAX := 999
-@export var stat_max: int = DEFAULT_STAT_MAX
-@export var stat_value: ClampedInt = ClampedInt.new(stat_min, stat_max, stat_min)
+@export var stat_value: ClampedInt = ClampedInt.new(DEFAULT_STAT_MIN, DEFAULT_STAT_MAX, DEFAULT_STAT_MIN)
 
 func _init(p_stat_value: int = DEFAULT_STAT_MIN, p_stat_max: int = DEFAULT_STAT_MAX, p_experience: int = MIN_EXPERIENCE, p_stat_min: int = DEFAULT_STAT_MIN) -> void:
-	stat_min = p_stat_min
-	stat_max = p_stat_max
-	stat_value = ClampedInt.new(stat_min, stat_max, p_stat_value)
+	stat_value._min_value = p_stat_min
+	stat_value._max_value = p_stat_max
+	stat_value.value = p_stat_value
 	experience = p_experience

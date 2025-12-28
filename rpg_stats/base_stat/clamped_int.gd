@@ -13,6 +13,8 @@ var _value: int = DEFAULT_MIN_VALUE
 	set(p_value):
 		_value = clamp(p_value, _min_value, _max_value)
 		value_changed.emit(_value)
+	get:
+		return _value
 
 func _init(p_value = DEFAULT_MIN_VALUE, p_max_value = DEFAULT_MAX_VALUE, p_min_value = DEFAULT_MIN_VALUE) -> void:
 	_min_value = p_min_value
