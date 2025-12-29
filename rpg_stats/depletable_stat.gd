@@ -37,7 +37,7 @@ var current: int:
 		elif _current >= max_value:
 			replenished.emit()
 
-func _init(p_initial: int = -1, p_max: int = 100, p_min: int = 0) -> void:
+func _init(p_max: int = 100, p_min: int = 0, p_initial: int = -1) -> void:
 	max_value = p_max
 	min_value = p_min
 	# Default to max if no specific starting value is provided
