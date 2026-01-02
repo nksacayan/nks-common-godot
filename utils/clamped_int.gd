@@ -1,9 +1,10 @@
+@tool
 extends Resource
 class_name ClampedInt
 
 signal value_changed(new_value: int)
 
-const DEFAULT_MIN_VALUE: int = 1
+const DEFAULT_MIN_VALUE: int = 0
 @export var _min_value: int = DEFAULT_MIN_VALUE
 const DEFAULT_MAX_VALUE := 999
 @export var _max_value: int = DEFAULT_MAX_VALUE
