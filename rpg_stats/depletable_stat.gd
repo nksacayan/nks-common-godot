@@ -6,6 +6,11 @@ signal decreased(amount: int)
 signal depleted
 signal replenished
 
+var _stat_name: String
+var stat_name: String:
+	get:
+		return _stat_name
+
 var max_value: int
 var min_value: int
 
@@ -37,7 +42,8 @@ var current: int:
 		elif _current >= max_value:
 			replenished.emit()
 
-func _init(p_max: int = 100, p_min: int = 0, p_initial: int = -1) -> void:
+func _init(p_stat_name: String, p_max: int = 100, p_min: int = 0, p_initial: int = -1) -> void:
+	_stat_name = p_stat_name
 	max_value = p_max
 	min_value = p_min
 	# Default to max if no specific starting value is provided
