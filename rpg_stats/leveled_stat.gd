@@ -41,6 +41,6 @@ func _init(p_stat_name: String = DEFAULT_STAT_NAME, p_stat_value: int = DEFAULT_
 	# Only initialize if it doesn't already exist (from a save/load)
 	_stat_name = p_stat_name
 	if not stat_value:
-		stat_value = ClampedInt.new(p_stat_value, p_stat_max, p_stat_min)
+		stat_value = ClampedInt.new(p_stat_max, p_stat_value, p_stat_min)
 	# stat value must be initialized before using experience setter
 	experience = p_experience
