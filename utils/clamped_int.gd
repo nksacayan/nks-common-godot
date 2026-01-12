@@ -2,29 +2,27 @@
 extends Resource
 class_name ClampedInt
 
-signal value_changed(new_value: int)
+signal value_changed(p_new_value: int)
+signal value_maximum_reached(p_max_value: int)
+signal value_minimum_reached(p_min_value: int)
 
-const DEFAULT_MIN_VALUE: int = 0
-@export var _min_value: int = DEFAULT_MIN_VALUE
-var min_value: int = DEFAULT_MIN_VALUE:
-	get:
-		return _min_value
+const DEFAULT_MIN_VALUE := 0
+@export var min_value: int = DEFAULT_MIN_VALUE
 
 const DEFAULT_MAX_VALUE := 999
-@export var _max_value: int = DEFAULT_MAX_VALUE
-var max_value: int = DEFAULT_MAX_VALUE:
-	get:
-		return _max_value
+@export var max_value: int = DEFAULT_MAX_VALUE
 
-var _value: int = DEFAULT_MIN_VALUE
 @export var value: int = DEFAULT_MIN_VALUE:
 	set(p_value):
-		_value = clamp(p_value, _min_value, _max_value)
-		value_changed.emit(_value)
-	get:
-		return _value
+		value = clamp(p_value, min_value, max_value)
+		
+		value_changed.emit(value)
+		if value == min_value:
+			value_minimum_reached.emit(value)
+		if value == max_value:
+			value_maximum_reached.emit(value)
 
 func _init(p_max_value = DEFAULT_MAX_VALUE, p_value = DEFAULT_MIN_VALUE, p_min_value = DEFAULT_MIN_VALUE) -> void:
-	_min_value = p_min_value
-	_max_value = p_max_value
+	min_value = p_min_value
+	max_value = p_max_value
 	value = p_value
