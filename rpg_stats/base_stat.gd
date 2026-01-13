@@ -1,6 +1,6 @@
 @tool
 extends Resource
-class_name BaseStat
+class_name BaseStatResource
 
 signal value_changed(p_new_value: int)
 

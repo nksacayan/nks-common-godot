@@ -1,6 +1,6 @@
 @tool
-extends BaseStat
-class_name BaseStatClamped
+extends BaseStatResource
+class_name BaseStatResourceClamped
 
 signal value_maximum_reached(p_max_value: int)
 signal value_minimum_reached(p_min_value: int)
