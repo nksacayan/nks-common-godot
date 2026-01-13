@@ -24,6 +24,6 @@ func set_value(p_value: int) -> void:
 func get_value() -> int:
 	return value
 
-func _init(p_value: int = DEFAULT_VALUE, p_stat_name: String = DEFAULT_STAT_NAME) -> void:
+func _init(p_stat_name: String = DEFAULT_STAT_NAME, p_value: int = DEFAULT_VALUE) -> void:
 	value = p_value
 	_stat_name = p_stat_name
