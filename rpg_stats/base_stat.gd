@@ -1,6 +1,6 @@
 @tool
 extends Resource
-class_name BaseStatResource
+class_name BaseStat
 
 signal value_changed(p_new_value: int)
 
@@ -20,6 +20,6 @@ func _set_value(p_value: int) -> void:
 	value = p_value
 	value_changed.emit(value)
 
-func _init(p_stat_name: String = DEFAULT_STAT_NAME, p_value: int = DEFAULT_VALUE) -> void:
-	_stat_name = p_stat_name
+func _init(p_value: int = DEFAULT_VALUE, p_stat_name: String = DEFAULT_STAT_NAME) -> void:
 	value = p_value
+	_stat_name = p_stat_name
