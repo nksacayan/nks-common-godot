@@ -1,17 +1,31 @@
-extends RefCounted
+# get rid of tool because i don't want this used in editor
+@warning_ignore("MISSING_TOOL")
+extends BaseStat
 class_name DerivedStat
+# don't persist this value either, recalc it on startup
 
 var base_stats: Array[BaseStat]
 var calculate_stat_value: Callable # (Array[BaseStat]) -> int
-# readonly plz
-var stat: BaseStat
 
-func _init(p_base_stats: Array[BaseStat], p_calculate_stat_value: Callable, p_stat_name: String = BaseStat.DEFAULT_STAT_NAME) -> void:
+func set_value(_p_value: int) -> void:
+	push_warning("Derived stat values are read only")
+
+# default args for base stats and callable don't make sense, but allow init argless in case of resource
+#  honestly i probably don't even want it to be a resource but my architecture is wack
+func _init(
+	p_base_stats: Array[BaseStat],
+	p_calculate_stat_value: Callable,
+	p_stat_name: String = DEFAULT_STAT_NAME
+	) -> void:
+	# editor creation guard
+	if not resource_path.is_empty():
+		push_error("DerivedStat is logic-only and cannot be a saved Resource. Use code to instantiate.")
+		return
 	base_stats = p_base_stats
 	calculate_stat_value = p_calculate_stat_value
-	stat = BaseStat.new(calculate_stat_value.call(base_stats), p_stat_name)
-	# refresh calculated value if base stats ever change
+	super (calculate_stat_value.call(base_stats), p_stat_name)
 	for base_stat in base_stats:
-		base_stat.value_changed.connect(
-			func() -> void: stat.value = calculate_stat_value.call(base_stats)
-		)
+		base_stat.value_changed.connect(_set_calculated_value.unbind(1))
+
+func _set_calculated_value() -> void:
+	super.set_value(calculate_stat_value.call(base_stats))
