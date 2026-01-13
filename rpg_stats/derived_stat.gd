@@ -2,7 +2,7 @@ extends RefCounted
 class_name DerivedStat
 
 var base_stats: Array[BaseStat]
-var calculate_stat_value: Callable # -> int
+var calculate_stat_value: Callable # (Array[BaseStat]) -> int
 # readonly plz
 var stat: BaseStat
 
