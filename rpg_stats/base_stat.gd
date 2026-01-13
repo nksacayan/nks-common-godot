@@ -13,9 +13,12 @@ var stat_name: String = DEFAULT_STAT_NAME:
 		return _stat_name
 
 @export var value: int = DEFAULT_VALUE:
-	set(p_value):
-		value = p_value
-		value_changed.emit(value)
+	set = _set_value
+
+# allows subclasses to override
+func _set_value(p_value: int) -> void:
+	value = p_value
+	value_changed.emit(value)
 
 func _init(p_stat_name: String = DEFAULT_STAT_NAME, p_value: int = DEFAULT_VALUE) -> void:
 	_stat_name = p_stat_name
