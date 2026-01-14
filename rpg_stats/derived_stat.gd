@@ -23,7 +23,7 @@ func _init(
 		return
 	base_stats = p_base_stats
 	calculate_stat_value = p_calculate_stat_value
-	super (calculate_stat_value.call(base_stats), p_stat_name)
+	super (p_stat_name, calculate_stat_value.call(base_stats))
 	for base_stat in base_stats:
 		base_stat.value_changed.connect(_set_calculated_value.unbind(1))
 
