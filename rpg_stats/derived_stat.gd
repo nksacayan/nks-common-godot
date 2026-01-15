@@ -8,7 +8,7 @@ var base_stats: Array[BaseStat]
 var calculate_stat_value: Callable # (Array[BaseStat]) -> int
 
 func set_value(_p_value: int) -> void:
-	push_error("Derived stat value read. These are meant to be read only")
+	push_error("Derived stat value set. These are meant to be read only")
 
 func _init(
 	p_base_stats: Array[BaseStat],
