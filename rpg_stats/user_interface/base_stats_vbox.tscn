@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://8jx158fdjtqj"]
+
+[ext_resource type="Script" uid="uid://bsn4u51373iw" path="res://nks-common-godot/rpg_stats/user_interface/base_stats_container.gd" id="1_f0e64"]
+[ext_resource type="PackedScene" uid="uid://uduiyfl4wlsx" path="res://nks-common-godot/rpg_stats/user_interface/base_stat_label.tscn" id="2_20wen"]
+
+[node name="BaseStatsVbox" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_f0e64")
+label_packed_scene = ExtResource("2_20wen")
