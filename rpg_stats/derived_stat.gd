@@ -8,10 +8,8 @@ var base_stats: Array[BaseStat]
 var calculate_stat_value: Callable # (Array[BaseStat]) -> int
 
 func set_value(_p_value: int) -> void:
-	push_warning("Derived stat values are read only")
+	push_error("Derived stat value read. These are meant to be read only")
 
-# default args for base stats and callable don't make sense, but allow init argless in case of resource
-#  honestly i probably don't even want it to be a resource but my architecture is wack
 func _init(
 	p_base_stats: Array[BaseStat],
 	p_calculate_stat_value: Callable,
