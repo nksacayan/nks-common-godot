@@ -20,7 +20,7 @@ func _ready() -> void:
 	# Initial draw
 	_set_label_text()
 
-func _set_label_text() -> void:
+func _set_label_text(_p_ignored_value: int = 0) -> void:
 	if base_stat:
 		text = str(base_stat.stat_name, ": ", base_stat.value)
 	else:
