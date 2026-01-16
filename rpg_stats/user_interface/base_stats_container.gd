@@ -6,9 +6,7 @@ class_name BaseStatsContainer
 var base_stats: Array[BaseStat]:
 	set(p_base_stats):
 		base_stats = p_base_stats
-		# Ensure we only build UI if we are in the tree
-		if is_node_ready():
-			_update_ui()
+		_update_ui()
 
 # No need to track stat_labels in a separate array if they are children
 # unless you need to access them specifically later.
@@ -17,6 +15,8 @@ func _ready() -> void:
 	_update_ui()
 
 func _update_ui() -> void:
+	if not is_node_ready():
+		return
 	_clear_labels()
 	
 	if not label_packed_scene:
@@ -27,9 +27,9 @@ func _update_ui() -> void:
 		_create_label(stat)
 
 func _clear_labels() -> void:
-	# Clear actual children to ensure the UI is physically empty
 	for child in get_children():
-		child.queue_free()
+		remove_child(child) # Physically remove it so get_children() is accurate
+		child.queue_free() # Then delete it
 
 func _create_label(p_stat: BaseStat) -> void:
 	var instance = label_packed_scene.instantiate()
