@@ -23,7 +23,7 @@ func set_value(p_value: int) -> void:
 	value_changed.emit(value)
 
 func get_value() -> int:
-	return value
+	return _value
 
 func _init(p_stat_name: String = DEFAULT_STAT_NAME, p_value: int = DEFAULT_VALUE) -> void:
 	_value = p_value
