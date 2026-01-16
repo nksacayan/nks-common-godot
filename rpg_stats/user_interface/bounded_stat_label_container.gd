@@ -1,11 +1,12 @@
 extends Container
-class_name BaseStatsContainer
+class_name BoundedStatLabelContainer
 
+# TODO: DRY with base_stat_label_container
 @export var label_packed_scene: PackedScene
 
-var base_stats: Array[BaseStat]:
+var bounded_stats: Array[BoundedStat]:
 	set(p_base_stats):
-		base_stats = p_base_stats
+		bounded_stats = p_base_stats
 		_update_ui()
 
 # No need to track stat_labels in a separate array if they are children
@@ -20,10 +21,10 @@ func _update_ui() -> void:
 	_clear_labels()
 	
 	if not label_packed_scene:
-		push_warning("BaseStatsContainer: label_packed_scene is missing!")
+		push_warning("BaseStatLabelContainer: label_packed_scene is missing!")
 		return
 
-	for stat in base_stats:
+	for stat in bounded_stats:
 		_create_label(stat)
 
 func _clear_labels() -> void:
@@ -31,9 +32,9 @@ func _clear_labels() -> void:
 		remove_child(child) # Physically remove it so get_children() is accurate
 		child.queue_free() # Then delete it
 
-func _create_label(p_stat: BaseStat) -> void:
+func _create_label(p_stat: BoundedStat) -> void:
 	var instance = label_packed_scene.instantiate()
-	var new_label = instance as BaseStatLabel
+	var new_label = instance as BoundedStatLabel
 	
 	if new_label:
 		# Set the data BEFORE adding to child to ensure _ready() 
@@ -43,4 +44,4 @@ func _create_label(p_stat: BaseStat) -> void:
 	else:
 		# Safety: If it's not the right type, free it so we don't leak memory
 		instance.queue_free()
-		push_error("BaseStatsContainer: PackedScene is not a BaseStatLabel!")
+		push_error("BoundedStatLabelContainer: PackedScene is not a BoundedStatLabel!")
