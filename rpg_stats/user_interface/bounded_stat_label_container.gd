@@ -39,7 +39,7 @@ func _create_label(p_stat: BoundedStat) -> void:
 	if new_label:
 		# Set the data BEFORE adding to child to ensure _ready() 
 		# in the label has the data it needs.
-		new_label.base_stat = p_stat
+		new_label.bounded_stat = p_stat
 		add_child(new_label)
 	else:
 		# Safety: If it's not the right type, free it so we don't leak memory
